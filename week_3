@@ -1,0 +1,35 @@
+//ques1
+#include<stdio.h>
+
+void printarray(int A[],int size)
+{
+    for(int i = 0 ;i<size ; i++)
+    {
+        printf(" %d ",A[i]);
+    }
+    printf("\n");
+}
+void insertion_sort(int A[],int size)
+{
+    for(int j = 1 ; j<size ; j++)
+    {
+        int key = A[j];
+        int k = j -1;
+        while(key<A[k]&&k>=0)
+        {
+            A[k+1]=A[k];
+            --k;
+        }
+        A[k+1]=key;
+    }
+}
+int main()
+{
+    int A[]={1,7,5,3,4};
+    int size = sizeof(A)/sizeof(A[0]);
+    insertion_sort(A,size);
+    printf("sorted array :\n");
+    printarray(A,size);
+    printf("number of comparisons are :");
+    printf("number of shifts are:");
+}
