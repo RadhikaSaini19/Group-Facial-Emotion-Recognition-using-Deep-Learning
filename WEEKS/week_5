@@ -1,1 +1,142 @@
+/*Q1) Given an unsorted array of alphabets containing duplicate elements. Design an algorithm and implement it using a program to find which alphabet has maximum 
+number of occurrences and print it. (Time Complexity = O(n)) (Hint: Use counting sort)Input Format: The first line contains number of test cases, T. For each test 
+case, there will be two input lines. First line contains n (the size of array). Second line contains space-separated integers describing array.Output: The output will 
+have T number of lines. For each test case, output will be the array element which has maximum occurrences and its total number of occurrences. If no duplicates are
+present (i.e. all the elements occur only once), output should be “No Duplicates Present”.*/
 
+#include<iostream>
+using namespace std;
+char findmax(char a[], int n)
+{
+    char m=a[0];
+    for(int i=1;i<n;i++)
+    {
+        if(a[i]>m)
+        {
+            m=a[i];
+        }
+    }
+    return m;
+}
+void count_sort(char a[],int n)
+{
+    int i,*c,j,dup,temp;
+    char max=findmax(a,n);
+    int m=int(max);
+    c = new int[m+1];
+    for(i=0;i<m+1;i++)
+    {
+        c[i]=0;
+    }
+    for(int i=0;i<n;i++)
+    {
+        c[int(a[i])]++;
+    }
+    dup=c[i];
+    for(int i=0;i<m+1;i++)
+    {
+        if(c[i]>dup)
+        {
+            dup=c[i];
+            temp=i;
+        }
+    }
+   char ch=(char)temp;
+   if(dup>1)
+   {
+        cout<<ch<<" :"<<dup<<endl;
+   }
+   else
+   {
+       cout<<"No duplicates found"<<endl;
+   }
+}
+int main()
+{
+    int t,n;
+    cout<<"enter number of test case"<<endl;
+    cin>>t;
+    while(t>0)
+    {
+        cout<<"enter number of elements in array"<<endl;
+        cin>>n;
+        char a[n];
+        cout<<"enter "<<n<<" number of elements"<<endl;
+        for(int i=0;i<n;i++)
+        {
+            cin>>a[i];
+        }
+        count_sort(a,n);
+        t--;
+    }
+}        
+/*Q2) Given an unsorted array of integers, design an algorithm and implement it using a program to find whether two elements exist such that their sum is equal to 
+the given key element. (Time Complexity = O(n log n)) Input Format: The first line contains number of test cases, T. For each test case, there will be two input lines. First line contains n (the size of array). Second line contains space-separated integers describing array. Third line contains key 
+Output Format: The output will have T number of lines. For each test case, output will be the elements arr[i] and arr[j] such that arr[i]+arr[j] = key if exist 
+otherwise print 'No Such Elements Exist”.*/
+
+#include <bits/stdc++.h>
+using namespace std;
+int main() 
+{
+	int t;
+	cin >>t;
+	while(t--)
+    {
+		int n,sum,flag=0;
+		cin >> n;
+		int ar[n];
+		for(int i=0;i<n;++i) 
+			cin >> ar[i];
+		cin >> sum;
+		sort(ar,ar+n);
+		int a=0,b=n-1;
+		while(a<b)
+		{
+			if(ar[a]+ar[b]>sum)
+				--b;
+			else if(ar[a]+ar[b]<sum)
+				++a;
+			else
+			{
+				cout << ar[a] << "&" << ar[b] << ", ";++a;--b;++flag;
+			}		
+		}
+		if(!flag)
+                          cout << "NO Such Pair Exist" << "\n";
+	}	
+}
+
+Q3) You have been given two sorted integer arrays of size m and n. Design an algorithm and implement it using a program to find list of elements which are common to 
+both. (Time Complexity = O(m+n)) Input Format: First line contains m (the size of first array). Second line contains m space-separated integers describing first array.
+Third line contains n (the size of second array). Fourth line contains n space-separated integers describing second array.
+Output Format: Output will be the list of elements which are common to both.*/
+
+#include <bits/stdc++.h>
+using namespace std;
+int main() 
+{
+	int n,m;
+	cin >> n ;
+	int ar[n];
+	for(int i=0;i<n;++i) 
+		cin >> ar[i];
+	cin >> m;
+	int ar2[m];
+	for (int i = 0; i < m; ++i)
+		cin  >> ar2[i];
+	int a=0,b=0;
+	while(a<n && b<m)
+	{
+		if(ar[a] < ar2[b])
+			++a;
+		else if(ar[a] > ar2[b])
+			++b;
+		else
+			{
+                cout << ar[a] << " ";++a;++b;}
+	}
+	cout << "\n";
+}
+
+        
