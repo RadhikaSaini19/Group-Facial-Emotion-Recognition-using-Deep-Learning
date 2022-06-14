@@ -1,103 +1,122 @@
-//ques_1
-#include<stdio.h>
-#include<stdlib.h>
+/*Q1) Given a sorted array of positive integers containing few duplicate elements, design an algorithm and implement it using a
+program to find whether the given key element is present in the array or not. If present, then also find the number of copies of 
+given key. (Time Complexity = O(log n))
+Input format:
+The first line contains number of test cases, T.
+For each test case, there will be three input lines.
+First line contains n (the size of array).
+Second line contains space-separated integers describing array.
+Third line contains the key element that need to be searched in the array.
+Output format:
+The output will have T number of lines.
+For each test case T, output will be the key element and its number of copies in the array if the key element is present in the array 
+otherwise print “Key not present”.*/
 
-void binary_search(int arr[], int n , int key)
-{
-    int f = 1;
-    int l = 3 ;
-    int i , mid = 0 ;
-    int flag = 1 ;
-    
-    while(f<l)
+#include<iostream>
+using namespace std;
+int main()   {  
+    int n,x;
+    int count=0;
+    cout<<"enter the size of array:"<<endl;
+    cin>>n;
+    int A[n];
+    cout<<"\n Enter the element of array:"<<endl;
+    for(int i=0;i<n;i++)
     {
-        mid = (f+l)/2;
-        if (arr[mid]==key)
-        {
-            printf("key found at %d \n",mid);
-            flag = 0 ;
-            break ;
-        }
-        else if ( arr[mid]> key)
-        {
-            l = mid - 1 ;
-        }
-        else if ( arr[mid]< key)
-        {
-            f = mid + 1 ;
-        }
-        if(flag)
-        {
-            printf("key not found\n");
-        }
-    } 
-        
-        printf("element %d occur %d times", key ,(l-f+1));
-        return ( l - f + 1  );
-}
-
-int main()
-{
-    int n , i ;
-    printf("Enter the number of elements:\n");
-    scanf("%d",&n);
-    int arr[n];
-    printf("Enter the  number of elements:\n");
-    for(i=0 ; i<n ; i++)
-    {
-        scanf("%d",&arr[i]);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+        cin>>A[i];
     }
-    int key ;
-    printf("Enter the key \n");
-    scanf("%d",&key);
-    
-    binary_search(arr , n ,key);
-}
-//second
-#include<stdio.h>
-#include<stdlib.h>
-void find_sequence(int arr[] , int i , int j , int  k )
-{
- if(arr[i]+arr[j]==arr[k])
- {
-     printf("Sequence Is Found \n");
- }
- else
- {
-     printf("Sequence Is Not Found \n");
- }
- printf("%d + %d = %d \n", i , j , k);
-}
+    cout<<"\n Enter the element you want to search"<<endl;
+    cin>>x;
 
-int main()
-{
-    int n , m ;
-    printf("Enter the number of elements:\n");
-    scanf("%d",&n);
-    int arr[n];
-    printf("Enter the  number of elements:\n");
-    for(m=0 ; m<n ; m++)
+    for(int i=0;i<n;i++)
     {
-        scanf("%d",&arr[m]);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+     if(A[i]==x)
+     {
+        count++;
+     }
     }
-   int i = 0 , j = 0 , k = 0 ;
+    cout<<"The frequency of key element is :"<<count;
+    return 0;
+}
+/*Q2) Given a sorted array of positive integers containing few duplicate elements, design an algorithm and implement it using a 
+program to find whether the given key element is present in the array or not. If present, then also find the number of copies of given key. 
+(Time Complexity = O(log n))
+Input format:
+The first line contains number of test cases, T.
+For each test case, there will be three input lines.
+First line contains n (the size of array).
+Second line contains space-separated integers describing array.
+Third line contains the key element that need to be searched in the array.
+Output format:
+The output will have T number of lines.
+For each test case T, output will be the key element and its number of copies in the array if the key element is present in the array otherwise print 
+“Key not present”.*/
 
-   while(i<n)
-   {
-       for(i=0;i<n;i++)
-       {
-         j=j+1 ;
-       }
-      for(i=0;i<n;i++)
-      {
-        k=k+2;
-        printf("k is %d \n", &k);
-      }
-      printf("key found\n ");
-   }   printf("Enter the value of first digit :\n");
-   scanf("%d",&i);
-   printf("Enter the value of second digit :\n");
-   scanf("%d",&j);
-  find_sequence(arr , i , j , k );
-   
+#include<iostream>
+using namespace std;
+int main()   {  
+    int n,x;
+    int count=0;
+    cout<<"enter the size of array:"<<endl;
+    cin>>n;
+    int A[n];
+    cout<<"\n Enter the element of array:"<<endl;
+    for(int i=0;i<n;i++)
+    {
+        cin>>A[i];
+    }
+    cout<<"\n Enter the element you want to search"<<endl;
+    cin>>x;
+
+    for(int i=0;i<n;i++)
+    {
+     if(A[i]==x)
+     {
+        count++;
+     }
+    }
+    cout<<"The frequency of key element is :"<<count;
+    return 0;
+}
+/*Q3) Given an array of nonnegative integers, design an algorithm and a program to count the number of pairs of integers such that their 
+difference is equal to a given key, K.
+Input format:
+The first line contains number of test cases, T.
+For each test case, there will be three input lines.
+First line contains n (the size of array).
+Second line contains space-separated integers describing array. Third line contains the key element.
+Output format:
+The output will have T number of lines.
+For each test case T, output will be the total count i.e., number of times such pair exists.*/
+
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int t;
+    cin>>t;
+    while(t--) {
+        int n;
+        cin>>n;
+        int arr[n];
+        for(int i = 0; i < n; i++)
+          cin>>arr[i];
+        int key;
+        cin>>key;
+        sort(arr, arr + n);
+        int c = 0, l, h;
+        for(int i = 0; i < n; i++) {
+            l = i;
+            h = n - 1;
+            while(l < h) {
+            if(arr[h] - arr[l] == key) {
+                c++;
+                h--;
+                l++;
+            }
+            else if(arr[h] - arr[l] > key) h--;
+            else l++;
+           }
+        }
+        cout<<c<<endl;
+    }
 }
