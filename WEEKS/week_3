@@ -1,35 +1,153 @@
-//ques1
-#include<stdio.h>
+/*Q1) Given an unsorted array of integers, design an algorithm and a program to sort the array using
+insertion sort. Your program should be able to find number of comparisons and shifts (shifts total number of times the array 
+elements are shifted from their place) required for sorting the array.
+Input Format:
+The first line contains number of test cases, T.
+For each test case, there will be two input lines.
+First line contains n (the size of array).
+Second line contains space-separated integers describing array.
+Output Format:
+The output will have T number of lines.
+For each test case T, there will be three output lines.
+First line will give the sorted array.
+Second line will give total number of comparisons.
+Third line will give total number of shift operations required.*/
 
-void printarray(int A[],int size)
-{
-    for(int i = 0 ;i<size ; i++)
-    {
-        printf(" %d ",A[i]);
-    }
-    printf("\n");
-}
-void insertion_sort(int A[],int size)
-{
-    for(int j = 1 ; j<size ; j++)
-    {
-        int key = A[j];
-        int k = j -1;
-        while(key<A[k]&&k>=0)
-        {
-            A[k+1]=A[k];
-            --k;
+#include<bits/stdc++.h>
+using namespace std;
+void insertionSort(int a[], int n){
+    int ctr=0,flag=0;
+    for(int i=1;i<n;i++){
+        ctr++;
+        int j;
+        j=i-1;
+        int x=a[i];
+        while (j>-1 && a[j]>x){
+            ctr++;
+            a[j+1]=a[j];
+            flag++;
+            j--;
         }
-        A[k+1]=key;
+        a[j+1]=x;
     }
+    for(int i=0;i<n;i++){
+        cout<<a[i]<<" ";
+    }
+    cout<<endl;
+    cout<<" Shifts = "<<ctr<<endl;
+    cout<<"Comparison = "<<flag<<endl;
 }
+int main(){
+    int n;
+    cout<<"enter the no. of test cases"<<endl;
+    cin>>n;
+    while(n--)
+    {
+            int c;
+        cout<<"enter the no. of elements in an array"<<endl;
+     cin>>c;
+        int a[c];
+         for(int i=0;i<c;i++)
+         {
+            cin>>a[i];
+        }
+        insertionSort(a,c);
+    } 
+}
+/*Q2) Given an unsorted array of integers, design an algorithm and implement a program to sort this array using 
+selection sort. Your program should also find number of comparisons and number of swaps required.
+Input Format:
+The first line contains number of test cases, T.
+For each test case, there will be two input lines.
+First line contains n (the size of array).
+Second line contains space-separated integers describing array.
+Output Format:
+The output will have T number of lines.
+For each test case T, there will be three output lines.
+First line will give the sorted array.
+Second line will give total number of comparisons.
+Third line will give total number of swaps required.*/
+
+#include <iostream>
+using namespace std;
+void Sel_Sort(int[], int);
 int main()
 {
-    int A[]={1,7,5,3,4};
-    int size = sizeof(A)/sizeof(A[0]);
-    insertion_sort(A,size);
-    printf("sorted array :\n");
-    printarray(A,size);
-    printf("number of comparisons are :");
-    printf("number of shifts are:");
+    int T;
+    cin >> T;
+    for (int i = 0; i < T; i++)
+    {
+        int n;
+        cin >> n;
+        int A[1000];
+        for (int j = 0; j < n; j++)
+        {
+            cin >> A[j];
+        }
+        Sel_Sort(A, n);
+    }
+}
+void Sel_Sort(int A[], int n)
+{
+    int comp = 0, swaps = 0;
+    int min, temp = 0;
+    for (int i = 0; i < n - 1; i++)
+    {
+        min = i;
+        for (int j = i + 1; j < n; j++)
+        {
+            comp++;
+            if (A[min] > A[j])
+            {
+                min = j;
+            }
+        }
+        swaps++;
+        swap(A[min], A[i]);
+    }
+    for (int i = 0; i < n; i++)
+    {
+        cout << A[i] << " ";
+    }
+    cout << "\ncomparisons = " << comp << endl
+         << "swaps = " << swaps << endl;
+}
+/*Q3) Given an unsorted array of positive integers, design an algorithm and implement it using a 
+program to find whether there are any duplicate elements in the array or not. (use sorting) 
+(Time Complexity = O(n log n))
+Input Format:
+The first line contains number of test cases, T.
+For each test case, there will be two input lines.
+First line contains n (the size of array).
+Second line contains space-separated integers describing array.
+Output Format:
+The output will have T number of lines.
+For each test case, output will be 'YES' if duplicates are present otherwise ‘NO’.*/
+
+#include<bits/stdc++.h>
+using namespace std;
+void findDuplicate(int a[], int x)
+{
+    for(int i=0;i<x;i++){
+        for(int j=i+1;j<x;j++){
+            if(a[i]==a[j]){
+                cout<<"YES"<<endl;
+            }
+            break;
+        }
+    }
+            cout<<"NO"<<endl;
+}
+int main(){
+    int n;
+    cin>>n;
+    while(n--){
+        int x;
+        cin>>x;
+        int a[x];
+        for(int i=0;i<x;i++){
+            cin>>a[i];
+        }
+        findDuplicate(a ,x);
+    }
 }
